@@ -9,19 +9,16 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import com.kevin.spring_security_demo.service.MyUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private MyUserDetailsService userDetailsService;
 
     @Bean
     public AuthenticationProvider authProvider() {
@@ -41,24 +38,24 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
+    // @Bean
+    // public UserDetailsService userDetailsService() {
 
-        UserDetails user = User
-                .withDefaultPasswordEncoder()
-                .username("kevin")
-                .password("0301")
-                .roles("USER")
-                .build();
+    // UserDetails user = User
+    // .withDefaultPasswordEncoder()
+    // .username("kevin")
+    // .password("0301")
+    // .roles("USER")
+    // .build();
 
-        UserDetails admin = User
-                .withDefaultPasswordEncoder()
-                .username("nematov")
-                .password("0324")
-                .roles("ADMIN")
-                .build();
+    // UserDetails admin = User
+    // .withDefaultPasswordEncoder()
+    // .username("nematov")
+    // .password("0324")
+    // .roles("ADMIN")
+    // .build();
 
-        return new InMemoryUserDetailsManager(user, admin);
-    }
+    // return new InMemoryUserDetailsManager(user, admin);
+    // }
 
 }
